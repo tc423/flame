@@ -14,16 +14,8 @@ const getExternalWeather = async () => {
     // Save weather data
     const cursor = res.data.current;
     const weatherData = await Weather.create({
-      externalLastUpdate: cursor.last_updated,
-      tempC: cursor.temp_c,
-      tempF: cursor.temp_f,
-      isDay: cursor.is_day,
-      cloud: cursor.cloud,
-      conditionText: cursor.condition.text,
-      conditionCode: cursor.condition.code,
+      tempC: cursor.temp-273.15,
       humidity: cursor.humidity,
-      windK: cursor.wind_kph,
-      windM: cursor.wind_mph,
     });
     return weatherData;
   } catch (err) {
